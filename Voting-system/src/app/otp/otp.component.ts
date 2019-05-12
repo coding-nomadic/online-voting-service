@@ -34,7 +34,7 @@ export class OTPComponent implements OnInit {
         .pipe(first())
             .subscribe(
                 data => {
-                    console.log("inside----otp ")
+                    //console.log("inside----otp ")
                     let jsonArray=JSON.stringify(data);
                     let jsonArrays=JSON.parse(jsonArray);
                     for(let i=0;i<jsonArrays.length;i++){

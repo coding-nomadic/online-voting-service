@@ -11,7 +11,13 @@ export class AuthenticationService {
     loginUser(voterCardNumber: string) {
         return this.http.get(`${environment.apiUrl}/getAllRegisteredVoters`)
             .pipe(map(data => {
-                console.log("inside....");
+                return data;
+            }));
+    }
+    getAllTempVoterCards(voterCardNumber: string) {
+        return this.http.get(`${environment.apiUrl}/getAllTempVoterCards`)
+            .pipe(map(data => {
+                console.log("inside....get all temp voter cards...");
                 return data;
             }));
     }
@@ -30,7 +36,6 @@ export class AuthenticationService {
     fetchAdminVotes() {
         return this.http.get(`${environment.apiUrl}/getAllVotesForAdmin`)
             .pipe(map(data => {  
-                console.log("-------inside this method------");
                 return data;
             }));
     }
@@ -38,7 +43,7 @@ export class AuthenticationService {
         console.log("values coming are :"+vote.voterCardNumber+" "+vote.candidate);
         return this.http.get(`${environment.apiUrl}/addVote?voterCardNumber=`+vote.voterCardNumber+"&candidateGroup="+vote.candidate)
             .pipe(map(data => {
-                console.log("-----------------------2");
+                console.log("hiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
                 return data;
             }));
     }

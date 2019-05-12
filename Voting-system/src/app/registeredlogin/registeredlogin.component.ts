@@ -51,21 +51,22 @@ export class RegisteredLoginComponent implements OnInit {
                         .subscribe(
                             data => {
                                 console.log("true ...."+obj.email+" "+this.f.voterCardNumber.value);
-                                
                                 this.alertService.success('OTP sent successfully in mail..',true);
                                 this.router.navigate(['/otp']);
-                                this.loading = false;
+                                this.loading = false;                                
                             } ,
                             error => {
-                                //this.alertService.error('Voter card number needs to be unique, please register again');
-                                //this.loading = false;
                                 this.alertService.success('OTP sent successfully in mail..',true);
                                 this.router.navigate(['/otp']);
                                 this.loading = false;
                             });
-                      
-                    }
-                  }
+                            break;
+                        }else{
+                            console.log("false ....");        
+                            this.alertService.error("Cant find in database, please register for new one!!");
+                            this.loading = false;
+                        }    
+                   }
                 },
                 error => {
                     console.log("other ....");

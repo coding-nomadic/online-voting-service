@@ -1,19 +1,51 @@
 ﻿<h4 style="text-align: center">Welcome to Voting Page</h4>
 
+<div class="form-group" style="text-align: center">
+    <table align="center">
+            <thead>
+              <tr style>
+                <th>Candidates</th>
+                <th>Code</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>Peter Parker</b></td>
+                <td>PP1</td><br>
+              </tr>
+              <tr>
+                <td><b>Ram Prakash</b></td>
+                <td>TS3</td><br>
+              </tr>
+              <tr>
+                <td><b>Mike</b></td>
+                <td>MK2</td><br>
+              </tr>
+              <tr>
+                <td><b>Paul Ribbon</b></td>
+                <td>PR4</td><br>
+              </tr>
+            </tbody>
+        </table> 
+</div>   
 <form [formGroup]="voteForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-        <label for="voterCardNumber">Enter your registered voter card number</label>
+        <label for="voterCardNumber">Enter Registered Voter ID</label>
         <input type="text" formControlName="voterCardNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.voterCardNumber.errors }" />
         <div *ngIf="submitted && f.voterCardNumber.errors" class="invalid-feedback">
             <div *ngIf="f.voterCardNumber.errors.required">voterCardNumber is required</div>
         </div>
     </div>
-   <div class="form-group">
-    <label for="countries">Candidates : </label>
-    <select formControlName="countryControl">
-    <option [ngValue]="country" *ngFor="let country of countries">{{country.name}}</option>
-      </select>
-   </div>
+
+    <div class="form-group">
+        <label for="candidate">Enter your candidate Given Above</label>
+        <input type="text" formControlName="candidate" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.candidate.errors }" />
+        <div *ngIf="submitted && f.candidate.errors" class="invalid-feedback">
+            <div *ngIf="f.candidate.errors.required">candidate is required</div>
+        </div>
+    </div>
+
+    
     <br>    
     <div class="form-group">
         <button [disabled]="loading" class="btn btn-primary">Click to Vote </button>

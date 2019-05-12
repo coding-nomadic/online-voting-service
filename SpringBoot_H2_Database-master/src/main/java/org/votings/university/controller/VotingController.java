@@ -6,6 +6,7 @@ import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,7 @@ import org.votings.university.otpservice.OTPService;
 import org.votings.university.repository.VotingRepository;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class VotingController {
 
 	private final OTPService otpservice = OTPService.INSTANCE;
@@ -51,7 +53,7 @@ public class VotingController {
 		sender.send(message);
 		return "Mail Sent Success!";
 	}
-
+	
 	@RequestMapping("/api")
 	public String getStatusFromServer() {
 		return "hello from the server!!";
@@ -92,6 +94,22 @@ public class VotingController {
 			return "Something went wrong !";
 		}
 	}
+	
+	@RequestMapping("/addTempVoterCard")
+	public String addTempVoterCard(@RequestParam("voterCardNumber") String voterCardNumber) {
+		if (itemRepo.addTempVoterCard(voterCardNumber) >= 1) {
+			return "Item added Successfully";
+		} else {
+			return "Something went wrong !";
+		}
+	}
+	
+	// APIs related to vote table.
+		@RequestMapping("/getAllTempVoterCards")
+		
+		public List<TempVoterCard> getAllTempVoterCards() {
+			return itemRepo.getAllVoterCards();
+		}
 
 	@RequestMapping("/deteteVote")
 	public String deteteVote(@RequestParam("itemId") int itemId) {
@@ -116,6 +134,7 @@ public class VotingController {
 	}
 
 	@RequestMapping("/getAllRegisteredVoters")
+	@CrossOrigin(origins = "http://localhost:8080")
 	public List<VotingRegistration> getAllRegisteredVoters() {
 		return itemRepo.getAllRegisteredVoters();
 	}
@@ -137,13 +156,6 @@ public class VotingController {
 		return itemRepo.getAllVoterCards();
 	}
 
-	@RequestMapping("/addTempVoterCard")
-	public String addTempVoterCard(@RequestParam("voterCardNumber") String voterCardNumber) {
-		if (itemRepo.addTempVoterCard(voterCardNumber) >= 1) {
-			return "Item added Successfully";
-		} else {
-			return "Something went wrong !";
-		}
-	}
+	
 
 }

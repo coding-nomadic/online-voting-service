@@ -5,6 +5,8 @@ import { first } from 'rxjs/operators';
 import { AlertService, AuthenticationService } from '../_services';
 import { User } from '../_models';
 
+
+
 @Component({templateUrl: 'vote.component.html'})
 export class VoteComponent implements OnInit{   
     voteForm: FormGroup;
@@ -12,7 +14,7 @@ export class VoteComponent implements OnInit{
     loading = false;
     submitted = false;
     returnUrl: string;
-    countries = [{
+    characters = [{
         id: '8f8c6e98',
         name: 'Peter Parker',
         code: 'PP1'
@@ -44,12 +46,12 @@ export class VoteComponent implements OnInit{
         private authenticationService: AuthenticationService,
         private alertService: AlertService) {}
     ngOnInit() {
-        this.voteForm = this.formBuilder.group({
+       /**  this.voteForm = this.formBuilder.group({
             countryControl: ['Canada']
-          });
+          });**/
         this.voteForm = this.formBuilder.group({
             voterCardNumber: ['', Validators.required],
-            countryControl: ['', Validators.required]          
+            candidate: ['', Validators.required]          
         });
         // reset login status
         this.authenticationService.logout();
@@ -65,18 +67,43 @@ export class VoteComponent implements OnInit{
             return;
         }
         this.loading = true;
-        this.authenticationService.vote(this.voteForm.value)
-            .pipe(first())
-            .subscribe(
-                data => {
-                    console.log("--insdie---"+data.toString);
-                    this.alertService.success('Vote successful', true);
-                    this.router.navigate(['/home']);
-                },
-                error => {
-                    this.alertService.success('Vote successful', true);
-                    this.router.navigate(['/login']);
-                    //this.loading = false;
-                });
-    }
+        this.authenticationService.loginUser(this.f.voterCardNumber.value)
+        .pipe(first())
+        .subscribe(
+            data => {
+                console.log("--------"+JSON.stringify(data));
+                let jsonArray=JSON.parse(JSON.stringify(data));                   
+                for(let i=0;i<jsonArray.length;i++){
+                let obj = jsonArray[i];
+                console.log(obj);
+                if(obj.voterCardNumber==this.f.voterCardNumber.value){
+                    console.log("true .....matched");
+                    this.authenticationService.vote(this.voteForm.value)
+                    .pipe(first())
+                    .subscribe(
+                        data => {
+                            console.log("--insdie---"+data.toString);
+                            this.alertService.success('Vote successful', true);
+                            this.router.navigate(['/home']);
+                        },
+                        error => {
+                            this.alertService.success('Vote successful', true);
+                            this.router.navigate(['/login']);
+                            //this.loading = false;
+                        });
+            
+                    }else{
+                        console.log("false ....");        
+                        this.alertService.error("Cant find in database, please register for new one!!");
+                        this.loading = false;
+                    }
+                }
+            },
+            error => {
+                console.log("other ....");
+                this.alertService.error(error);
+                this.loading = false;
+            });
+      }
+
 }

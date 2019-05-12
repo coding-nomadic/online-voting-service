@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="voterCardNumber">VoteCardNumber</label>
+        <label for="voterCardNumber">Student Unique ID card number</label>
         <input type="voterCardNumber" formControlName="voterCardNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.voterCardNumber.errors }" />
         <div *ngIf="submitted && f.voterCardNumber.errors" class="invalid-feedback">
             <div *ngIf="f.voterCardNumber.errors.required">VoteCardNumber is required</div>
@@ -29,14 +29,14 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="contact">contact</label>
+        <label for="contact">Contact</label>
         <input type="text" formControlName="contact" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.contact.errors }" />
         <div *ngIf="submitted && f.contact.errors" class="invalid-feedback">
             <div *ngIf="f.contact.errors.required">contact is required</div>
         </div>
     </div>
     <div class="form-group">
-        <label for="email">email</label>
+        <label for="email">Email</label>
         <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
         <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
             <div *ngIf="f.email.errors.required">email is required</div>

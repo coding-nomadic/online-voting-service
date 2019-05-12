@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
                     console.log(obj);
                     if(obj.voterCardNumber==this.f.voterCardNumber.value){
                         console.log("true ....");
-                        this.alertService.error("You are already registered, please register new with unique ID");
+                        this.alertService.error("You are already registered/voted, please register new with unique ID and start voting!!");
                         this.loading = false;
                         break;
                     }else{                

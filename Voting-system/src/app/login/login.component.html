@@ -1,7 +1,7 @@
 ﻿<h4 style="text-align: center">Voter Login Page</h4>
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-        <label for="voterCardNumber">Enter registered voter card</label>
+        <label for="voterCardNumber">Enter Registered Voter ID</label>
         <input type="text" formControlName="voterCardNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.voterCardNumber.errors }" />
         <div *ngIf="submitted && f.voterCardNumber.errors" class="invalid-feedback">
             <div *ngIf="f.voterCardNumber.errors.required">voterCardNumber is required</div>

@@ -29,5 +29,9 @@ export class UserService {
     sendOTP(email:string,voterCardNumber:string) {
         console.log("values coming are :"+voterCardNumber+" "+email);
         return this.http.get(`${environment.apiUrl}/sendMail?email=`+email+"&voterCardNumber="+voterCardNumber);
+     }  
+     sendThankYouMail(email:string,voterCardNumber:string) {
+        console.log("values coming are :"+voterCardNumber+" "+email);
+        return this.http.get(`${environment.apiUrl}/sendThankYouMail?email=`+email+"&voterCardNumber="+voterCardNumber);
      }    
 }
