@@ -1,12 +1,21 @@
-# Online-Voting-System
+## Online-Voting-System
 
-Pre-requisites, Latest Java and maven (for build) and node js should be installed in the system. 
+Pre-requisites are - Java and maven (for build) and Node js should be installed in the machine. 
 
-For SpringBoot application - 
-1. Goto the main method of the application and run the application.
-2. Access -http://localhost:8080/h2-console
-3. Give the JDBC URL -jdbc:h2:mem:testdb and login.
-4. Access - http://localhost:8080/api to make sure APIs are up and running.
+For SpringBoot application. Run the application.
+
+```
+mvn spring-boot:run
+```
+Access the browser and navigate below URL and provide the JDBC URL as mentioned below - 
+```
+http://localhost:8080/h2-console
+```
+```
+jdbc:h2:mem:testdb
+```
+
+Access - http://localhost:8080/api to make sure APIs are up and running.
 
 
 For Angular Application - 
