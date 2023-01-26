@@ -27,4 +27,7 @@ In the same folder, run the command to start the application -
 ```
 ng serve
 ```
-Now, access the angular UI from this URL -http://localhost:4200.
+Now, access the angular UI from this URL 
+```
+http://localhost:4200
+```
