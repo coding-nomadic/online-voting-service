@@ -1,8 +1,8 @@
 ## Online-Voting-System
 
-Pre-requisites are - Java and maven (for build) and Node js should be installed in the machine. 
+Pre-requisites are - Java and Maven (for build) and Node JS should be installed in the machine. 
 
-For SpringBoot application. Run the application.
+For SpringBoot application. Run the application with command -
 
 ```
 mvn spring-boot:run
@@ -15,11 +15,16 @@ http://localhost:8080/h2-console
 jdbc:h2:mem:testdb
 ```
 
-Access - http://localhost:8080/api to make sure APIs are up and running.
-
-
-For Angular Application - 
-1. Goto the folder where package.json is there and run this -npm install -g @angular/cli
-2. In the same folder structure, run the command -npm install.
-3. In the same folder, run the command -ng serve.
-4. Access the url -http://localhost:4200.
+For Angular Application. Goto the folder where package.json is presend and run this command
+```
+npm install -g @angular/cli
+```
+In the same folder structure, run the command to install all npm packages -
+```
+npm install
+```
+In the same folder, run the command to start the application - 
+```
+ng serve
+```
+Now, access the angular UI from this URL -http://localhost:4200.
