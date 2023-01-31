@@ -37,10 +37,7 @@ public class VotingController {
 		try {
 			helper.setTo(email);
 			String newOtp = otpservice.otpGenerator();
-			System.out.println("new otp---"+newOtp);
-			System.out.println("voter card ----"+voterCardNumber);
 			if (itemRepo.saveOTP(voterCardNumber, newOtp)>= 1) {
-				System.out.println("--matched-----");
 				helper.setText("Greetings!! Your one time password to vote is : " + newOtp);
 				helper.setSubject("Mail From Online Voting System");
 			} else {
